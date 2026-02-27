@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import { useBudget } from "../hooks/useBudget"
+import { useBudget } from "../hooks/useBudget" 
 import ExpenseDetail from "./ExpenseDetail"
 import type { Expense } from "../types"
 
