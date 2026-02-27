@@ -6,8 +6,9 @@ import type { Expense } from "../types"
 export default function ExpenseList() {
     const { state } = useBudget()
 
-    const isEmpty = useMemo(() => state.expenses.length === 0, [state.expenses])
-
+    const filterExpenses = state.currentCategory ? state.expenses.filter((expense:Expense) => expense.category === state.currentCategory) : state.expenses 
+    const isEmpty = useMemo(() => filterExpenses.length === 0, [filterExpenses])
+    
     return (
         <div className="mt-10">
             {isEmpty ? (
@@ -15,7 +16,7 @@ export default function ExpenseList() {
             ) : (
                 <div className="space-y-5">
                     <p className="text-center text-gray-500 text-2xl font-bold my-5">Lista de gastos</p>
-                    {state.expenses.map((expense: Expense) => {
+                    {filterExpenses.map((expense: Expense) => {
                         return (
                             <ExpenseDetail
                                 key={expense.id}
